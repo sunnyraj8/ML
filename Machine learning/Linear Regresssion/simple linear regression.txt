@@ -1,0 +1,34 @@
+ import pandas as pd
+import numpy as np
+from sklearn import linear_model
+import matplotlib.pyplot as plt
+url1='https://raw.githubusercontent.com/apratim777/apratim777/master/homeprices.csv'
+mca=pd.read_csv(url1)
+mca
+
+
+
+plt.xlabel('Area')
+plt.ylabel('Price')
+plt.scatter(mca.area,mca.price,color='red',marker='+')
+new_x=mca.drop('price',axis=1)
+new_x
+
+
+
+new_y=mca.drop('area',axis=1)
+new_y
+
+
+
+reg=linear_model.LinearRegression()
+
+
+reg.fit(new_x,new_y)
+
+
+reg.predict([[3000]])
+
+
+
+reg.score(new_x,new_y)

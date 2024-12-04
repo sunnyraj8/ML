@@ -1,0 +1,60 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+
+df=pd.read_csv("https://raw.githubusercontent.com/apratim777/apratim777/master/insurance_data.csv")
+df.head()
+
+
+df.tail()
+
+
+
+x=df.drop('bought_insurance',axis=1)
+x
+
+
+
+y=df.bought_insurance
+y
+
+
+
+plt.scatter(x,y,color='red')
+
+
+plt.plot(x,y,color='green',linewidth=2)
+plt.scatter(x,y,color='red')
+plt.show()
+
+
+from sklearn.model_selection import train_test_split
+
+
+
+train_x,test_x,train_y,test_y = train_test_split(x,y,train_size=0.8)
+test_x
+
+
+from sklearn.linear_model import LogisticRegression
+
+
+
+reg=LogisticRegression()
+
+
+reg.fit(train_x,train_y)
+
+
+y_predict=reg.predict(test_x)
+y_predict
+
+
+
+reg.score(train_x,train_y)
+
+
+
+reg.score(test_x,test_y)
+

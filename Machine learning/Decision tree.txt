@@ -1,0 +1,49 @@
+import pandas as pd
+url="https://raw.githubusercontent.com/apratim777/apratim777/master/salaries.csv"
+df=pd.read_csv(url)
+df
+
+
+df.head()
+
+
+input=df.drop('salary_more_then_100k',axis=1)
+input
+
+
+target =df['salary_more_then_100k']
+target
+
+
+from sklearn.preprocessing import LabelEncoder
+le_company=LabelEncoder()
+le_job=LabelEncoder()
+le_degree=LabelEncoder()
+
+
+input['company_name']=le_company.fit_transform(input['company'])
+input['job_name']=le_company.fit_transform(input['job'])
+input['degree_name']=le_company.fit_transform(input['degree'])
+
+
+inputs_n=input.drop(['company','job','degree'],axis=1)
+inputs_n
+
+
+target
+
+
+
+from sklearn import tree
+model=tree.DecisionTreeClassifier()
+
+
+
+model.fit(inputs_n,target)
+
+
+model.score(inputs_n,target)
+
+
+model.predict([[2,1,0]])
+
